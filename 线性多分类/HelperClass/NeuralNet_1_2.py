@@ -59,7 +59,7 @@ class NeuralNet_1_2(object):
         checkpoint_iteration = (int)(max_iteration * checkpoint)
 
         for epoch in range(self.params.max_epoch):
-            print("epoch=%d" %epoch)
+            #print("epoch=%d" %epoch)
             dataReader.Shuffle()
             for iteration in range(max_iteration):
                 # get x and y value for one sample
@@ -74,7 +74,7 @@ class NeuralNet_1_2(object):
                 total_iteration = epoch * max_iteration + iteration
                 if (total_iteration+1) % checkpoint_iteration == 0:
                     loss = self.checkLoss(loss_function, dataReader)
-                    print(epoch, total_iteration, loss)
+                    #print(epoch, total_iteration, loss)
                     loss_history.AddLossHistory(epoch*max_iteration+iteration, loss)
                     if loss < self.params.eps:
                         break

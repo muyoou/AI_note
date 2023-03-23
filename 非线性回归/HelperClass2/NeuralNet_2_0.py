@@ -124,20 +124,20 @@ class NeuralNet_2_0(object):
         # end if
 
     def CheckErrorAndLoss(self, dataReader, train_x, train_y, epoch, total_iteration):
-        print("epoch=%d, total_iteration=%d" %(epoch, total_iteration))
+        #print("epoch=%d, total_iteration=%d" %(epoch, total_iteration))
 
         # calculate train loss
         self.forward(train_x)
         loss_train = self.loss_func.CheckLoss(self.output, train_y)
         accuracy_train = self.__CalAccuracy(self.output, train_y)
-        print("loss_train=%.6f, accuracy_train=%f" %(loss_train, accuracy_train))
+        #print("loss_train=%.6f, accuracy_train=%f" %(loss_train, accuracy_train))
 
         # calculate validation loss
         vld_x, vld_y = dataReader.GetValidationSet()
         self.forward(vld_x)
         loss_vld = self.loss_func.CheckLoss(self.output, vld_y)
         accuracy_vld = self.__CalAccuracy(self.output, vld_y)
-        print("loss_valid=%.6f, accuracy_valid=%f" %(loss_vld, accuracy_vld))
+        #print("loss_valid=%.6f, accuracy_valid=%f" %(loss_vld, accuracy_vld))
 
         need_stop = self.loss_trace.Add(epoch, total_iteration, loss_train, accuracy_train, loss_vld, accuracy_vld)
         if loss_vld <= self.hp.eps:
